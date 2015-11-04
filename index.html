@@ -20,12 +20,17 @@
     <div class="container game-body">
       <div class="row">
         <div class="col-xs-12 text-center">
+          <p>P1:&#8593;/&#8595;/&#8592;/&#8594; P2:W/S/A/D</p>
+        </div>
+        <div class="col-xs-12 text-center">
           <canvas id="canvas" width="200" height="200"></canvas>
         </div>
         <div class="col-xs-12 text-center">
           <h5>Score: 0</h5>
-          <button id="start-button" type="button" data-button='{"id": "3424"}' class="btn btn-default"><div class="col-xs-12">
-          START</div>
+          <button id="onePlayer-button" type="button" data-button='{"id": "3424"}' class="btn btn-default"><div class="col-xs-12">
+          1 Player</div>
+          <button id="twoPlayer-button" type="button" data-button='{"id": "3424"}' class="btn btn-default"><div class="col-xs-12">
+          2 Player</div>
         </div>
         <div class="col-xs-12 text-center">
             <label for="amount">Speed: <span id="speed-limit">Normal</span></label>
