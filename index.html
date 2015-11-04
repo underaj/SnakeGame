@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Little Snake</title>
+    <!-- bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jquery -->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <!-- jquery ui -->
+    <link href="css/jquery-ui.min.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <!-- custom js and css  -->
+    <script src="js/snakegame.js"></script>
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="vertical-center">
+    <div class="container game-body">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <canvas id="canvas" width="200" height="200"></canvas>
+        </div>
+        <div class="col-xs-12 text-center">
+          <h5>Score: 0</h5>
+          <button id="start-button" type="button" data-button='{"id": "3424"}' class="btn btn-default"><div class="col-xs-12">
+          START</div>
+        </div>
+        <div class="col-xs-12 text-center">
+            <label for="amount">Speed: <span id="speed-limit">Normal</span></label>
+            <div id="slider-number-range"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
