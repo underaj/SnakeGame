@@ -5,6 +5,10 @@ var snackY;
 var speed = 100;
 var highScore = 0;
 var gameChoice = 1;
+var image = new Image();
+image.src = 'images/opengraph.png';
+var coinS = new Audio();
+coinS.src = "sounds/smw_coin.wav";
 // player1 variables
 var snakeLengthOne = 10;
 var scoreOne;
@@ -86,7 +90,7 @@ $(document).ready(function(){
     } else if (gameChoice == 1 || gameChoice == 2) {
       if (gameChoice == 1) {
         if (e.keyCode == 40) {
-          ctx.clearRect(0, 0, 170, canvas.height);
+          ctx.clearRect(0, 170, 170, 70);
           ctx.beginPath();
           ctx.moveTo(160,220);
           ctx.lineTo(170,230);
@@ -99,7 +103,7 @@ $(document).ready(function(){
         }
       } else if (gameChoice == 2) {
         if (e.keyCode == 38) {
-          ctx.clearRect(0, 0, 170, canvas.height);
+          ctx.clearRect(0, 170, 170, 70);
           ctx.beginPath();
           ctx.moveTo(160,170);
           ctx.lineTo(170,180);
@@ -131,8 +135,7 @@ $(document).ready(function(){
         createSnack(2);
       }
     }
-    ctx.fillStyle = "green";
-    ctx.fillRect(snackX, snackY,SW,SW);
+    ctx.drawImage(image,snackX, snackY, SW, SW);
   }
 
 
@@ -171,6 +174,7 @@ $(document).ready(function(){
     }
     if(curXOne <= w - SW && curYOne <= h - SW && curXOne >= 0 && curYOne >= 0 && gameOn) {
       if (curXOne == snackX && curYOne == snackY) {
+        coinS.play();
         snakeLengthOne++;
         scoreOne+= 100;
         xArrOne.push(1);
@@ -188,6 +192,8 @@ $(document).ready(function(){
       ctx.strokeStyle = "white";
       ctx.font = "70px Arial";
       ctx.strokeText("GAME OVER",10,240);
+      ctx.font = "12px Arial";
+      ctx.fillText("(Press ENTER play again!)",150,280);
       gameChoice = 3;
     }
   }
@@ -220,17 +226,27 @@ $(document).ready(function(){
 
     if(pOne && pTwo) {
       if (curXOne == snackX && curYOne == snackY) {
+        coinS.play();
         snakeLengthOne++;
         scoreOne+= 100;
         xArrOne.push(w);
         yArrOne.push(h);
+        if (scoreOne > highScore) {
+          highScore = scoreOne;
+          $(".high-Score").text("High-Score: " + highScore);
+        }
         $(".Score").text("P1 Score: "+ scoreOne + " P2 Score: "+ scoreTwo);
         createSnack(2);
       } else if (curXTwo == snackX && curYTwo == snackY) {
+        coinS.play();
         snakeLengthTwo++;
         scoreTwo+= 100;
         xArrTwo.push(w);
         yArrTwo.push(h);
+        if (scoreTwo > highScore) {
+          highScore = scoreTwo;
+          $(".high-Score").text("High-Score: " + highScore);
+        }
         $(".Score").text("P1 Score: "+ scoreOne + " P2 Score: "+ scoreTwo);
         createSnack(2);
       }
@@ -250,6 +266,9 @@ $(document).ready(function(){
         ctx.font = "70px Arial";
         ctx.strokeText("Player 1 Wins",8,240);
       }
+      ctx.fillStyle = "white";
+      ctx.font = "12px Arial";
+      ctx.fillText("(Press ENTER play again!)",150,280);
     }
   }
 
@@ -298,9 +317,13 @@ $(document).ready(function(){
     ctx.lineTo(170,180);
     ctx.lineTo(160,190);
     ctx.fill();
+    ctx.font = "60px sans-Serif";
+    ctx.fillText("LITTLE SNAKE",14,100);
     ctx.font = "26px Arial";
     ctx.fillText("1 Player",190,190);
     ctx.fillText("2 Players",190,240);
+    ctx.font = "12px Arial";
+    ctx.fillText("(Press Enter to START)",160,300);
   }
 
   function onePlayer() {
@@ -313,7 +336,7 @@ $(document).ready(function(){
     curXOne = 0;
     curYOne = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    $(".Score").text("P1 Score: "+ scoreOne);
+    $(".Score").text("Score: "+ scoreOne);
     initSnake(1,snakeLengthOne,xArrOne,yArrOne,"curXOne","curYOne");
     createSnack(1);
     timer = setInterval(onePlay, speed);
