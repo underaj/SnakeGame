@@ -177,8 +177,8 @@ $(document).ready(function(){
         coinS.play();
         snakeLengthOne++;
         scoreOne+= 100;
-        xArrOne.push(1);
-        yArrOne.push(1);
+        xArrOne.push(xArrOne[0]);
+        yArrOne.push(yArrOne[0]);
         $(".Score").text("Score: "+ scoreOne);
         if (scoreOne > highScore) {
           highScore = scoreOne;
